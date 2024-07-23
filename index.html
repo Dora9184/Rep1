@@ -29,9 +29,9 @@
 <body>
   <h1>Colora il Sole!</h1>
   <label for="color-picker-sun">Colore del Sole:</label>
-  <input type="color" id="color-picker-sun" value="#ffffff"> <!-- Colore di default per il sole (bianco) -->
+  <input type="color" id="color-picker-sun" value="#ffcc00"> <!-- Colore di default per il sole -->
   <label for="color-picker-eyes">Colore degli Occhi:</label>
-  <input type="color" id="color-picker-eyes" value="#000000"> <!-- Colore di default per gli occhi (nero) -->
+  <input type="color" id="color-picker-eyes" value="#000000"> <!-- Colore di default per gli occhi -->
 
   <!-- SVG inserito direttamente nel file HTML -->
   <svg
@@ -46,8 +46,8 @@
       cx="100"
       cy="100"
       r="50"
-      fill="white" <!-- Colore di riempimento iniziale su bianco -->
-      stroke="black" <!-- Colore del bordo iniziale su nero -->
+      fill="none" <!-- Nessun colore iniziale -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <!-- Raggi del sole -->
@@ -57,7 +57,7 @@
       y1="0"
       x2="100"
       y2="30"
-      stroke="black" <!-- Colore dei raggi su nero -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <line
@@ -66,7 +66,7 @@
       y1="200"
       x2="100"
       y2="170"
-      stroke="black" <!-- Colore dei raggi su nero -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <line
@@ -75,7 +75,7 @@
       y1="100"
       x2="30"
       y2="100"
-      stroke="black" <!-- Colore dei raggi su nero -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <line
@@ -84,7 +84,7 @@
       y1="100"
       x2="170"
       y2="100"
-      stroke="black" <!-- Colore dei raggi su nero -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <line
@@ -93,7 +93,7 @@
       y1="35"
       x2="65"
       y2="65"
-      stroke="black" <!-- Colore dei raggi su nero -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <line
@@ -102,7 +102,7 @@
       y1="35"
       x2="135"
       y2="65"
-      stroke="black" <!-- Colore dei raggi su nero -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <line
@@ -111,7 +111,7 @@
       y1="165"
       x2="65"
       y2="135"
-      stroke="black" <!-- Colore dei raggi su nero -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <line
@@ -120,7 +120,7 @@
       y1="165"
       x2="135"
       y2="135"
-      stroke="black" <!-- Colore dei raggi su nero -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <!-- Occhi del sole -->
@@ -129,8 +129,8 @@
       cx="80"
       cy="85"
       r="5"
-      fill="white" <!-- Colore di riempimento iniziale su bianco -->
-      stroke="black" <!-- Colore del bordo iniziale su nero -->
+      fill="none" <!-- Nessun colore iniziale -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <circle
@@ -138,8 +138,8 @@
       cx="120"
       cy="85"
       r="5"
-      fill="white" <!-- Colore di riempimento iniziale su bianco -->
-      stroke="black" <!-- Colore del bordo iniziale su nero -->
+      fill="none" <!-- Nessun colore iniziale -->
+      stroke="none" <!-- Nessun colore iniziale -->
       stroke-width="2"
     />
     <!-- Bocca del sole -->
@@ -157,6 +157,9 @@
     function updateSunColor(color) {
       document.getElementById('sun-body').setAttribute('fill', color);
       document.getElementById('sun-body').setAttribute('stroke', color); // Aggiorna anche il colore del bordo
+      document.querySelectorAll('#ray1, #ray2, #ray3, #ray4, #ray5, #ray6, #ray7, #ray8').forEach(line => {
+        line.setAttribute('stroke', color);
+      });
     }
 
     // Funzione per aggiornare il colore degli occhi
@@ -177,9 +180,8 @@
       updateEyesColor(event.target.value);
     });
 
-    // Imposta i colori iniziali
-    updateSunColor(document.getElementById('color-picker-sun').value);
-    updateEyesColor(document.getElementById('color-picker-eyes').value);
+    // Imposta i colori iniziali per la bocca
+    document.getElementById('mouth').setAttribute('stroke', 'black');
   </script>
 </body>
 </html>
