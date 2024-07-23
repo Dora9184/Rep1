@@ -46,8 +46,8 @@
       cx="100"
       cy="100"
       r="50"
-      fill="none" <!-- Nessun colore iniziale -->
-      stroke="none" <!-- Nessun colore iniziale -->
+      fill="white" <!-- Colore di riempimento iniziale su bianco -->
+      stroke="black" <!-- Colore del bordo iniziale su nero -->
       stroke-width="2"
     />
     <!-- Raggi del sole -->
@@ -57,7 +57,7 @@
       y1="0"
       x2="100"
       y2="30"
-      stroke="none" <!-- Nessun colore iniziale -->
+      stroke="black" <!-- Colore dei raggi su nero -->
       stroke-width="2"
     />
     <line
@@ -66,7 +66,7 @@
       y1="200"
       x2="100"
       y2="170"
-      stroke="none" <!-- Nessun colore iniziale -->
+      stroke="black" <!-- Colore dei raggi su nero -->
       stroke-width="2"
     />
     <line
@@ -75,7 +75,7 @@
       y1="100"
       x2="30"
       y2="100"
-      stroke="none" <!-- Nessun colore iniziale -->
+      stroke="black" <!-- Colore dei raggi su nero -->
       stroke-width="2"
     />
     <line
@@ -84,7 +84,7 @@
       y1="100"
       x2="170"
       y2="100"
-      stroke="none" <!-- Nessun colore iniziale -->
+      stroke="black" <!-- Colore dei raggi su nero -->
       stroke-width="2"
     />
     <line
@@ -93,7 +93,7 @@
       y1="35"
       x2="65"
       y2="65"
-      stroke="none" <!-- Nessun colore iniziale -->
+      stroke="black" <!-- Colore dei raggi su nero -->
       stroke-width="2"
     />
     <line
@@ -102,7 +102,7 @@
       y1="35"
       x2="135"
       y2="65"
-      stroke="none" <!-- Nessun colore iniziale -->
+      stroke="black" <!-- Colore dei raggi su nero -->
       stroke-width="2"
     />
     <line
@@ -111,7 +111,7 @@
       y1="165"
       x2="65"
       y2="135"
-      stroke="none" <!-- Nessun colore iniziale -->
+      stroke="black" <!-- Colore dei raggi su nero -->
       stroke-width="2"
     />
     <line
@@ -120,7 +120,7 @@
       y1="165"
       x2="135"
       y2="135"
-      stroke="none" <!-- Nessun colore iniziale -->
+      stroke="black" <!-- Colore dei raggi su nero -->
       stroke-width="2"
     />
     <!-- Occhi del sole -->
@@ -129,8 +129,8 @@
       cx="80"
       cy="85"
       r="5"
-      fill="none" <!-- Nessun colore iniziale -->
-      stroke="none" <!-- Nessun colore iniziale -->
+      fill="white" <!-- Colore di riempimento iniziale su bianco -->
+      stroke="black" <!-- Colore del bordo iniziale su nero -->
       stroke-width="2"
     />
     <circle
@@ -138,8 +138,8 @@
       cx="120"
       cy="85"
       r="5"
-      fill="none" <!-- Nessun colore iniziale -->
-      stroke="none" <!-- Nessun colore iniziale -->
+      fill="white" <!-- Colore di riempimento iniziale su bianco -->
+      stroke="black" <!-- Colore del bordo iniziale su nero -->
       stroke-width="2"
     />
     <!-- Bocca del sole -->
@@ -156,17 +156,12 @@
     // Funzione per aggiornare il colore del corpo del sole
     function updateSunColor(color) {
       document.getElementById('sun-body').setAttribute('fill', color);
-      document.getElementById('sun-body').setAttribute('stroke', color); // Aggiorna anche il colore del bordo
-      document.querySelectorAll('#ray1, #ray2, #ray3, #ray4, #ray5, #ray6, #ray7, #ray8').forEach(line => {
-        line.setAttribute('stroke', color);
-      });
     }
 
     // Funzione per aggiornare il colore degli occhi
     function updateEyesColor(color) {
       document.querySelectorAll('#eye1, #eye2').forEach(element => {
         element.setAttribute('fill', color);
-        element.setAttribute('stroke', color); // Aggiorna anche il colore del bordo
       });
     }
 
@@ -179,9 +174,6 @@
     document.getElementById('color-picker-eyes').addEventListener('input', function(event) {
       updateEyesColor(event.target.value);
     });
-
-    // Imposta i colori iniziali per la bocca
-    document.getElementById('mouth').setAttribute('stroke', 'black');
   </script>
 </body>
 </html>
