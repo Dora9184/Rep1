@@ -1,36 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colora il Sole</title>
   <style>
-    .colorable {
-      cursor: pointer;
+    /* Aggiungi stili per la pagina */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #color-picker-sun {
+      margin: 20px;
+    }
+    #color-picker-eyes {
+      margin: 20px;
+    }
+    svg {
+      max-width: 100%;
+      height: auto;
     }
   </style>
-  <script>
-    function colorizeZone(zoneId, color) {
-      var zone = document.getElementById(zoneId);
-      if (zone) {
-        zone.style.fill = color;
-      }
-    }
-
-    function onZoneClick(event) {
-      var zoneId = event.target.id;
-      var color = prompt("Enter the color (e.g., #ff0000 or red):");
-      if (color) {
-        colorizeZone(zoneId, color);
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-      var zones = document.querySelectorAll(".colorable");
-      zones.forEach(function(zone) {
-        zone.addEventListener("click", onZoneClick);
-      });
-    });
-  </script>
 </head>
 <body>
+  <h1>Colora il Sole!</h1>
+  <label for="color-picker-sun">Colore del Sole:</label>
+  <input type="color" id="color-picker-sun" value="#ffcc00">
+  <label for="color-picker-eyes">Colore degli Occhi:</label>
+  <input type="color" id="color-picker-eyes" value="#000000">
+
+  <!-- SVG inserito direttamente nel file HTML -->
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="200"
@@ -40,7 +43,6 @@
     <!-- Corpo del sole -->
     <circle
       id="sun-body"
-      class="colorable"
       cx="100"
       cy="100"
       r="50"
@@ -48,11 +50,9 @@
       stroke="black"
       stroke-width="2"
     />
-
     <!-- Raggi del sole -->
     <line
       id="ray1"
-      class="colorable"
       x1="100"
       y1="0"
       x2="100"
@@ -62,7 +62,6 @@
     />
     <line
       id="ray2"
-      class="colorable"
       x1="100"
       y1="200"
       x2="100"
@@ -72,7 +71,6 @@
     />
     <line
       id="ray3"
-      class="colorable"
       x1="0"
       y1="100"
       x2="30"
@@ -82,7 +80,6 @@
     />
     <line
       id="ray4"
-      class="colorable"
       x1="200"
       y1="100"
       x2="170"
@@ -92,7 +89,6 @@
     />
     <line
       id="ray5"
-      class="colorable"
       x1="35"
       y1="35"
       x2="65"
@@ -102,7 +98,6 @@
     />
     <line
       id="ray6"
-      class="colorable"
       x1="165"
       y1="35"
       x2="135"
@@ -112,7 +107,6 @@
     />
     <line
       id="ray7"
-      class="colorable"
       x1="35"
       y1="165"
       x2="65"
@@ -122,7 +116,6 @@
     />
     <line
       id="ray8"
-      class="colorable"
       x1="165"
       y1="165"
       x2="135"
@@ -130,11 +123,9 @@
       stroke="black"
       stroke-width="2"
     />
-
     <!-- Occhi del sole -->
     <circle
       id="eye1"
-      class="colorable"
       cx="80"
       cy="85"
       r="5"
@@ -144,7 +135,6 @@
     />
     <circle
       id="eye2"
-      class="colorable"
       cx="120"
       cy="85"
       r="5"
@@ -152,16 +142,44 @@
       stroke="black"
       stroke-width="2"
     />
-
     <!-- Bocca del sole -->
     <path
       id="mouth"
-      class="colorable"
       d="M85,110 Q100,120 115,110"
       fill="none"
       stroke="black"
       stroke-width="2"
     />
   </svg>
+
+  <script>
+    // Funzione per aggiornare il colore del corpo del sole
+    function updateSunColor(color) {
+      document.getElementById('sun-body').setAttribute('stroke', color);
+      document.getElementById('sun-body').setAttribute('fill', color); // Imposta il colore di riempimento del cerchio del sole
+    }
+
+    // Funzione per aggiornare il colore degli occhi
+    function updateEyesColor(color) {
+      document.querySelectorAll('#eye1, #eye2').forEach(element => {
+        element.setAttribute('stroke', color);
+        element.setAttribute('fill', color); // Imposta il colore di riempimento degli occhi
+      });
+    }
+
+    // Ascoltatore per il cambio del colore del sole
+    document.getElementById('color-picker-sun').addEventListener('input', function(event) {
+      updateSunColor(event.target.value);
+    });
+
+    // Ascoltatore per il cambio del colore degli occhi
+    document.getElementById('color-picker-eyes').addEventListener('input', function(event) {
+      updateEyesColor(event.target.value);
+    });
+
+    // Imposta i colori iniziali
+    updateSunColor(document.getElementById('color-picker-sun').value);
+    updateEyesColor(document.getElementById('color-picker-eyes').value);
+  </script>
 </body>
 </html>
